@@ -1,0 +1,60 @@
+
+Open Visual Studio and create a WinForms app
+
+Select the option to place project and solution in same folder
+
+Choose .NET 8.0 LTS
+
+Double-click the 'Form1.cs' in the Solution Explorer and view the empty form. Note the form's properties in the lower half of the explorer. 
+Change the 'Text' property to 'Bouncer' (or similar) and run the app (click green arrow in toolbar). 
+
+Note the app's functionality 'out of the box' - it is resizable, moveable, has a system menu (top-left icon) and is minimizable, maximizable and closeable.
+
+Close the app and return to VS.
+
+Open the Toolbox by clicking the Toolbox tab (usually on left) - click the pin (top-right of Toolbox pane) to fix it, if you want. 
+Expand Common Controls to get an idea of what you can do with the form, but we are not going to use these controls - instead we will draw directly to the form using the graphics API.
+
+Expand the 'Components' (below Common Controls) and double-click the Timer component. This will add a Timer component, called 'timer1' to the form.
+Use the Properties pane to set the timer's Enabled property to true, and the interval to 32 (milliseconds - about 30 times per second)
+Click on the Events button at the top of the Properties pane (looks like a lightning bolt) and double-click in the empty space to the right of the 'Tick' event.
+This will add a handler to the form that will be called on each and every tick event, which will be every 32 milliseconds.
+Enter one line of code in the handler:
+
+           Invalidate();
+  
+This will call the Invalidate method (inherited from the Form's base class), which tells the OS that the form in now invalid and therfore requires repainting. 
+
+Click on the 'Form1.cs [Design]' tab to go back to the form designer and select the form and view the form's events (may need to click the Event button again).
+Find the Paint event and double-click the empty area to the right (you can enter a name here if you want to specify the name of the handler, and hit enter - or just double-clicking it will provide a name)
+Note the PaintEventArgs argument, e, passed into the paint handler from the base class. This has a property, Graphics, which provides an interface to the form's graphical API for drawing lines, colours etc.
+Enter the following code into the paint handler:
+
+            Graphics g = e.Graphics;
+            Pen pen = new Pen(Color.Black, 5);
+            g.DrawEllipse(pen, 100, 100, 50, 50);
+
+This code will run every time the form redraws itself, which will be about 30 times a second. 
+Click the green arrow to run the application and ensure you see a black circle in the top-left corner of the form.
+At the moment the pen object is being instantiated 30 times a second, which is not necessary - just one pen is needed that can be reused for each redraw.
+Move the declaration of the pen from the handler and add it as a member of the Form1 class, just before the constructor. Don't forget to add the access modifier 'private' to the start of the declaration.
+Rerun and ensure the program runs as before - only now pens are not being created unnecessarily. 
+
+Right-click on the project in Solution Explorer and Add > Class > 'Ball' and view the 'Ball.cs' file that has been created and added to the porject.
+If you prefer, you can type a semi-colon at the end of the 'namespace' declaration at the top of the file to use file level namespaces (this is optional).
+Provide the Ball class with private integers, x and y. Initialise them both to 100.
+Provide the Ball class with a pen, the same as the form's pen.
+Provide the Ball class with a public Draw method, which receives a single argument, g, of type 'Graphics'
+Implement the Draw method, similar to the form's paint handler, so it draws a circle, but this time using x and y (instead of hardcoding the position to 100, 100). You can hard code the size of the circle
+Remove the pen from the form class and replace it with a private Ball, 'ball'
+Remove the code from the form's paint handler and replace it with a call the the ball's Draw method.
+Run the application to ensure that the behaviour is the same as before.
+In the Ball's Draw method increment x by 2 before it is drawn and run the app again to see the ball slowly moving from left to right.
+Add a line to increment the y value by 2 and rerun to see the ball moving diagonally in the form.
+
+At this point you have a single ball with basic animation. Your challenge now is to bounce the ball off the inner edges of the form when it reaches them. Account for the form being resized during play.
+Modify the Ball class to start at a random location on the screen and moving in a random direction. You will need to think about how to change the ball class to achieve this.
+You can also add random sizes, colours and speeds. 
+You can also add random sizes, colours and speeds. 
+The next step is to add multiple balls to the form instead of just one. Think about the design of the program that has been developed so far and the changes needed for many ball instances. 
+

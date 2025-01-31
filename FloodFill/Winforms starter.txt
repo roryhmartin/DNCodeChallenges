@@ -1,0 +1,39 @@
+Change the 'Text' property to 'Bouncer' (or similar) and run the app (click green arrow in toolbar). 
+
+Note the app's functionality 'out of the box' - it is resizable, moveable, has a system menu (top-left icon) and is minimizable, maximizable and closeable.
+
+Close the app and return to VS.
+
+Open the Toolbox by clicking the Toolbox tab (usually on left) - click the pin (top-right of Toolbox pane) to fix it, if you want. 
+Expand Common Controls to get an idea of what you can do with the form, but we are not going to use these controls - instead we will draw directly to the form using the graphics API.
+
+Expand the 'Components' (below Common Controls) and double-click the Timer component. This will add a Timer component, called 'timer1' to the form.
+Use the Properties pane to set the timer's Enabled property to true, and the interval to 32 (milliseconds - about 30 times per second)
+Click on the Events button at the top of the Properties pane (looks like a lightning bolt) and double-click in the empty space to the right of the 'Tick' event.
+This will add a handler to the form that will be called on each and every tick event, which will be every 32 milliseconds.
+Enter one line of code in the handler:
+
+           Invalidate();
+  
+This will call the Invalidate method (inherited from the Form's base class), which tells the OS that the form in now invalid and therfore requires repainting. 
+
+Click on the 'Form1.cs [Design]' tab to go back to the form designer and select the form and view the form's events (may need to click the Event button again).
+Find the Paint event and double-click the empty area to the right (you can enter a name here if you want to specify the name of the handler, and hit enter - or just double-clicking it will provide a name)
+Note the PaintEventArgs argument, e, passed into the paint handler from the base class. This has a property, Graphics, which provides an interface to the form's graphical API for drawing lines, colours etc.
+Enter the following code into the paint handler:
+
+            Graphics g = e.Graphics;
+            Pen pen = new Pen(Color.Black, 5);
+            g.DrawEllipse(pen, 100, 100, 50, 50);
+
+This code will run every time the form redraws itself, which will be about 30 times a second. 
+Click the green arrow to run the application and ensure you see a black circle in the top-left corner of the form.
+At the moment the pen object is being instantiated 30 times a second, which is not necessary - just one pen is needed that can be reused for each redraw.
+Move the declaration of the pen from the handler and add it as a member of the Form1 class, just before the constructor. Don't forget to add the access modifier 'private' to the start of the declaration.
+Rerun and ensure the program runs as before - only now pens are not being created unnecessarily. 
+
+Modify the code to stop drawing a circle and instead draw a grid (horizontal and vertical lines) covering the form.
+
+Next add a Mouse_Click handler and use to argument passed in to determine where on the form the mouse was clicked.
+
+Refer to the code challenge instructions to implement the flood fill algorithm, and call it using the grid x,y location to start the flood fill process. 
