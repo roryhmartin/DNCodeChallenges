@@ -27,87 +27,87 @@ int[,] grid =
 
 
 // ---------------------- Start Recursive Flood Fill ----------------------
-//Console.WriteLine("Before Flood Fill:");
-//PrintGrid(grid);
-
-//FloodFill(grid, 2, 10, 0, 7);
-
-//Console.WriteLine("After Flood Fill:");
-//PrintGrid(grid);
-
-//static void FloodFill(int[,] grid, int x, int y, int target, int replacement)
-//{
-//  if (!isValid(grid, x, y, target))
-//  {
-//    return;
-//  }
-
-
-//  grid[x, y] = replacement;
-
-//  //Console.Clear();
-//  ////Console.SetCursorPosition(0, 0);
-//  //PrintGrid(grid);
-//  //Thread.Sleep(200);
-
-
-//  FloodFill(grid, x - 1, y, target, replacement);
-//  FloodFill(grid, x + 1, y, target, replacement);
-//  FloodFill(grid, x, y + 1, target, replacement);
-//  FloodFill(grid, x, y - 1, target, replacement);
-//  FloodFill(grid, x - 1, y + 1, target, replacement);
-//  FloodFill(grid, x + 1, y + 1, target, replacement);
-//  FloodFill(grid, x + 1, y - 1, target, replacement);
-//  FloodFill(grid, x - 1, y - 1, target, replacement);
-//}
+// Console.WriteLine("Before Flood Fill:");
+// PrintGrid(grid);
+//
+// FloodFill(grid, 2, 10, 0, 7);
+//
+// Console.WriteLine("After Flood Fill:");
+// PrintGrid(grid);
+//
+// static void FloodFill(int[,] grid, int x, int y, int target, int replacement)
+// {
+//   if (!isValid(grid, x, y, target))
+//   {
+//     return;
+//   }
+//
+//
+//   grid[x, y] = replacement;
+//
+//   //Console.Clear();
+//   ////Console.SetCursorPosition(0, 0);
+//   //PrintGrid(grid);
+//   //Thread.Sleep(200);
+//
+//
+//   FloodFill(grid, x - 1, y, target, replacement);
+//   FloodFill(grid, x + 1, y, target, replacement);
+//   FloodFill(grid, x, y + 1, target, replacement);
+//   FloodFill(grid, x, y - 1, target, replacement);
+//   FloodFill(grid, x - 1, y + 1, target, replacement);
+//   FloodFill(grid, x + 1, y + 1, target, replacement);
+//   FloodFill(grid, x + 1, y - 1, target, replacement);
+//   FloodFill(grid, x - 1, y - 1, target, replacement);
+// }
 // ---------------------- End Recursive Flood Fill ----------------------
 
 // ---------------------- Start Stack Fill ----------------------
 // last in first out
 
-//Console.WriteLine("Before Stack Fill:");
-//PrintGrid(grid);
-
-//StackFill(grid, 2, 10, 0, 7);
-
-//Console.WriteLine("After Stack Fill:");
-//PrintGrid(grid);
-
-//static void StackFill(int[,] grid, int x, int y, int target, int replacement)
-//{
-//  if (!isValid(grid, x, y, target))
-//  {
-//    return;
-//  }
-
-//  var stack = new Stack<(int, int)>();
-//  stack.Push((x, y));
-
-//  while (stack.Count > 0)
-//  {
-//    var (currentX, currentY) = stack.Pop();
-
-//    if (!isValid(grid, currentX, currentY, target))
-//    {
-//      continue;
-//    }
-
-//    Console.Clear();
-//    PrintGrid(grid);
-//    Thread.Sleep(200);
-
-//    if (grid[currentX, currentY] == target)
-//    {
-//      grid[currentX, currentY] = replacement;
-
-//      stack.Push((currentX, currentY + 1));
-//      stack.Push((currentX + 1, currentY));
-//      stack.Push((currentX, currentY - 1));
-//      stack.Push((currentX - 1, currentY));
-//    }
-//  }
-
-//}
+// Console.WriteLine("Before Stack Fill:");
+// PrintGrid(grid);
+//
+// StackFill(grid, 2, 10, 0, 7);
+//
+// Console.WriteLine("After Stack Fill:");
+// PrintGrid(grid);
+//
+// static void StackFill(int[,] grid, int x, int y, int target, int replacement)
+// {
+//   if (!isValid(grid, x, y, target))
+//   {
+//     return;
+//   }
+//
+//   var stack = new Stack<(int, int)>();
+//   stack.Push((x, y));
+//
+//   while (stack.Count > 0)
+//   {
+//     var (currentX, currentY) = stack.Pop();
+//
+//     if (!isValid(grid, currentX, currentY, target))
+//     {
+//       continue;
+//     }
+//
+//     Console.Clear();
+//     PrintGrid(grid);
+//     Thread.Sleep(200);
+//
+//     if (grid[currentX, currentY] == target)
+//     {
+//       grid[currentX, currentY] = replacement;
+//
+//       stack.Push((currentX, currentY + 1));
+//       stack.Push((currentX + 1, currentY));
+//       stack.Push((currentX, currentY - 1));
+//       stack.Push((currentX - 1, currentY));
+//     }
+//   }
+//
+// }
 
 // ---------------------- End Stack Fill ----------------------
 
